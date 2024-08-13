@@ -1,5 +1,5 @@
 Flask
-sqlite3
+Flask-SQLAlchemy
 Werkzeug
 Flask-Login
 gunicorn
