@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8f4; /* Light green background */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h1 class="text-3xl font-bold mb-6 text-green-700 text-center">Upload Product</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-medium mb-2">Product Name</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" id="name" name="name" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
+                <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="price" class="block text-gray-700 font-medium mb-2">Price</label>
+                <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" id="price" name="price" step="0.01" required>
+            </div>
+            <div class="mb-4">
+                <label for="image" class="block text-gray-700 font-medium mb-2">Product Image</label>
+                <input type="file" class="w-full text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" id="image" name="image" accept="image/*" required>
+            </div>
+            <div class="mb-4">
+                <label for="supplier_name" class="block text-gray-700 font-medium mb-2">Supplier Name</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" id="supplier_name" name="supplier_name" required>
+            </div>
+            <div class="mb-6">
+                <label for="company_contact" class="block text-gray-700 font-medium mb-2">Company Contact</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" id="company_contact" name="company_contact" required>
+            </div>
+            <button type="submit" class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Upload</button>
+        </form>
+    </div>
+</body>
+</html>

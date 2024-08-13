@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Mart</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8f4; /* Light green background */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-green-700">Welcome to Agri Mart</h1>
+        <h2 class="text-xl text-center mb-6 text-green-600">Login / Register to upload products</h2>
+        <div class="flex justify-center space-x-4">
+            {% if current_user.is_authenticated %}
+                <button class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600" onclick="window.location.href='{{ url_for('upload') }}'">Upload Products</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600" onclick="window.location.href='{{ url_for('gallery') }}'">View Current Products</button>
+                <button class="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+            {% else %}
+                <button class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600" onclick="window.location.href='{{ url_for('login') }}'">Login</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600" onclick="window.location.href='{{ url_for('register') }}'">Register</button>
+                <button class="bg-green-700 text-white font-bold py-2 px-4 rounded hover:bg-green-800" onclick="window.location.href='{{ url_for('gallery') }}'">View Current Products</button>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

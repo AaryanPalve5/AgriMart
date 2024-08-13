@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Mate - Gallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .gallery-item {
+            margin-bottom: 20px; /* Adjust spacing between items */
+            height: 400px; /* Increased height for more space */
+            overflow: hidden; /* Ensure no overflow */
+        }
+        .gallery-img {
+            width: 100%;
+            height: 200px; /* Fixed height for image */
+            object-fit: cover; /* Ensures the image covers the container without distortion */
+        }
+        .gallery-content {
+            padding: 16px; /* Padding for text */
+            background-color: #ffffff; /* Background color for text area */
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .search-button {
+            background: linear-gradient(135deg, #4a90e2, #0056b3);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .search-button:hover {
+            background: linear-gradient(135deg, #0056b3, #4a90e2);
+            transform: scale(1.05);
+        }
+        .search-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-green-700">Current Products</h1>
+        <form method="POST" action="{{ url_for('gallery') }}" class="flex mb-6">
+            <input type="text" name="search" class="form-input w-full mr-2 border-gray-300 rounded-md shadow-sm" placeholder="" value="{{ search_query }}">
+            <button type="submit" class="search-button text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">Search</button>
+            <button type="button" class="bg-gray-500 text-white font-bold py-2 px-4 rounded ml-2 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="window.location.href='{{ url_for('gallery') }}'">Clear</button>
+        </form>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {% for img in images %}
+            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                <img src="{{ url_for('image', image_id=img['id']) }}" class="gallery-img cursor-pointer" alt="{{ img['name'] }}" onclick="showImage('{{ url_for('image', image_id=img['id']) }}', '{{ img['name'] }}')">
+                <div class="gallery-content">
+                    <h5 class="text-lg font-bold mb-2 text-gray-900">{{ img['name'] }}</h5>
+                    <p class="text-gray-700 mb-1"><strong>Description:</strong> {{ img['description'] }}</p>
+                    <p class="text-gray-700 mb-1"><strong>Price:</strong> ${{ img['price'] }}</p>
+                    <p class="text-gray-700 mb-1"><strong>Supplier:</strong> {{ img['supplier_name'] }}</p>
+                    <p class="text-gray-700"><strong>Contact:</strong> {{ img['company_contact'] }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded mt-8 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="window.location.href='{{ url_for('index') }}'">Back to Main Menu</button>
+    </div>
+    <!-- Modal for displaying images -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    <script>
+        function showImage(src, name) {
+            var modal = document.getElementById("myModal");
+            var img = document.getElementById("modalImage");
+            img.src = src;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Close modal if user clicks outside of the image
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("myModal")) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
