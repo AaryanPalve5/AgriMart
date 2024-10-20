@@ -28,8 +28,6 @@ The key objectives of Agrimart are as follows:
 - **Secure Data Management:** Strong backend infrastructure to ensure the safety of user data and images.
 
 
-Visit the live application at [Agrimart](https://agrimart.onrender.com/).
-
 
 ## Getting Started
 
@@ -60,3 +58,6 @@ Before you begin, ensure you have met the following requirements:
    python app.py
 
 5. Access the app by navigating to http://localhost:5000/.
+
+
+Visit the live application at [Agrimart](https://agrimart.onrender.com/).
